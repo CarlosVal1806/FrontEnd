@@ -7,7 +7,7 @@ import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
 
-import { DataGrid, esES,enUS} from '@mui/x-data-grid'
+import { DataGrid, esES, enUS } from '@mui/x-data-grid'
 
 import QuickSearchToolbar from 'src/views/table/data-grid/QuickSearchToolbar'
 import Grid from '@mui/material/Grid'
@@ -23,7 +23,6 @@ import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogContentText from '@mui/material/DialogContentText'
-
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
@@ -69,7 +68,7 @@ const CustomCloseButton = styled(IconButton)(({ theme }) => ({
 }))
 
 const AppPage = ({}) => {
-  const { t, i18n  } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   //** DataGrid
   const columns = [
@@ -144,7 +143,7 @@ const AppPage = ({}) => {
   const [searchText, setSearchText] = useState('')
   const [filteredData, setFilteredData] = useState([])
   const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 7 })
- 
+
   const router = useRouter()
 
   const handleSearch = searchValue => {
@@ -270,11 +269,15 @@ const AppPage = ({}) => {
   useEffect(() => {
     peticionGet()
   }, [router])
+
   const currentLocaleText =
-  i18n.language === 'es' ? esES.components.MuiDataGrid.defaultProps.localeText : enUS.components.MuiDataGrid.defaultProps.localeText;
+    i18n.language === 'es'
+      ? esES.components.MuiDataGrid.defaultProps.localeText
+      : enUS.components.MuiDataGrid.defaultProps.localeText
+
   const table = (
     <DataGrid
-      disableColumnMenu  
+      disableColumnMenu
       columnHeaderHeight={38}
       rowHeight={38}
       stickyHeader
@@ -297,17 +300,16 @@ const AppPage = ({}) => {
         }
       }}
       localeText={currentLocaleText}
-      
+
       // localeText={esES.components.MuiDataGrid.defaultProps.localeText}
 
       // // Para inglés
-      // localeText={enUS.components.MuiDataGrid.defaultProps.localeText} 
-   />
-   )
+      // localeText={enUS.components.MuiDataGrid.defaultProps.localeText}
+    />
+  )
 
   if (!rows) return null
 
- 
   return (
     <Card>
       <CardHeader
